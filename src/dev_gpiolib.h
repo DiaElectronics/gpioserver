@@ -46,6 +46,12 @@ namespace DiaDevice {
     
     class GPIOWrapperWiringPi: public GPIOWrapper {
     public:
+        GPIOWrapperWiringPi() {
+            if (wiringPiSetup () == -1) {
+                fprintf(stderr, "ERROR: GPIO IS NOT INITIALIZED\n");
+                exit(1);
+            }
+        }
         ~GPIOWrapperWiringPi() {
         }
         
