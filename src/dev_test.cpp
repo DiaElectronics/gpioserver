@@ -7,8 +7,8 @@
 
 int main(int argc, char ** argv) {
     DiaDevice::Timer timer;
-    long time_of_library_creation = 1567872233377;
-    if (timer.CurrentTimeMS()<1567872233377) {
+    long long time_of_library_creation = 1567872233377;
+    if (timer.CurrentTimeMS()<time_of_library_creation) {
         fprintf(stderr, "ERR: current time is not correct (less than library creation date)\n");
     }
     DiaDevice::OutPin pin;
@@ -16,7 +16,7 @@ int main(int argc, char ** argv) {
     pin.Reverse();
     usleep(1000);
     pin.Reverse();
-    long actTime = pin.ActiveTimeMS();
+    long long actTime = pin.ActiveTimeMS();
     if (actTime<1 || actTime >2) {
         fprintf(stderr, "ERR: active time is not correct\n");
     }

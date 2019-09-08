@@ -8,9 +8,9 @@ namespace DiaDevice {
     class OutPin {
         private: 
         unsigned char physicalPin;
-        long changedOn;
+        long long changedOn;
         char active;
-        long activeMS;
+        long long activeMS;
         int totalSwitches;
         int direction;
         Timer timer;
@@ -47,7 +47,7 @@ namespace DiaDevice {
         
         void Reverse() {
             totalSwitches++;
-            long currentTime = timer.CurrentTimeMS();
+            long long currentTime = timer.CurrentTimeMS();
             if(active) {
                 activeMS += currentTime - changedOn;
                 active = 0;
