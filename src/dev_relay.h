@@ -61,11 +61,11 @@ namespace DiaDevice {
             
             // switching back and forth
             if (outPin->Active()) {
-                if(outPin->ChangedOn() + onTime >= timeInMS) {
+                if(timeInMS >= outPin->ChangedOn() + onTime) {
                     outPin->Reverse();
                 }
             } else {
-                if(outPin->ChangedOn() + offTime >= timeInMS) {
+                if(timeInMS >= outPin->ChangedOn() + offTime) {
                     outPin->Reverse();
                 }
             }

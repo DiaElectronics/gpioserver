@@ -10,7 +10,7 @@
 
 int main(int argc, char ** argv) {    
     DiaDevice::GPIOWrapper * gpio = new DiaDevice::GPIOWrapperWiringPi();
-    // DiaDevice::GPIOWrapper * gpio = new DiaDevice::GPIOWrapperEmpty();
+    //DiaDevice::GPIOWrapper * gpio = new DiaDevice::GPIOWrapperEmpty();
     DiaDevice::ButtonArray btnArray;
     DiaDevice::ButtonsFactory::FillDefault(&btnArray, gpio, 1);
     DiaDevice::RelayArray relArray;
@@ -26,7 +26,7 @@ int main(int argc, char ** argv) {
         int clicked=btnArray.LastClicked();
         if (clicked!=NOT_CLICKED) {
             fprintf(stdout, "clicked: %d \n", clicked);
-            for (int i=0;i<MAX_RELAYS;i++) {
+            for (int i=1;i<MAX_RELAYS;i++) {
                 if(i==clicked) {
                     relArray.SetRelay(i, 50);
                 } else {

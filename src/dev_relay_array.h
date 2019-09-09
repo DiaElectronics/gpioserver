@@ -9,7 +9,7 @@
 #include "dev_timer.h"
 #include "dev_relay.h"
 
-#define MAX_RELAYS 9
+#define MAX_RELAYS 8
 #define REL_CHECK_INTERVAL_NANO 1 * 1000000
 
 namespace DiaDevice {
