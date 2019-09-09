@@ -1,7 +1,6 @@
 #ifndef diae_gpio_server_dev_outpin_h
 #define diae_gpio_server_dev_outpin_h
 
-#include "dev_timer.h"
 #include "dev_gpiolib.h"
 
 namespace DiaDevice {
@@ -11,11 +10,14 @@ namespace DiaDevice {
         long long changedOn;
         char active;
         long long activeMS;
+        long long currentTimeMS;
+        
         int totalSwitches;
         int direction;
         Timer timer;
         GPIOWrapper * gpio;
         int gpioSelfInitilized;
+        
         
         public:
         int inline Enabled() {
@@ -26,6 +28,12 @@ namespace DiaDevice {
             physicalPin = -1;
             activeMS = 0;
             totalSwitches = 0;
+        }
+        
+        // Tick is a function to set currentTime (bad name :P )
+        // you MUST notify this object about current time using Tick function 
+        void Tick(long long currentTimeMS) {
+            this->currentTimeMS = currentTimeMS;
         }
         
         void Init(unsigned char physicalPinNumber, GPIOWrapper *gpioWrapper) {
@@ -47,15 +55,18 @@ namespace DiaDevice {
         
         void Reverse() {
             totalSwitches++;
-            long long currentTime = timer.CurrentTimeMS();
             if(active) {
-                activeMS += currentTime - changedOn;
+                activeMS += currentTimeMS - changedOn;
                 active = 0;
             } else {
                 active = 1;
             }
             gpio->Turn(physicalPin, active);
-            changedOn = currentTime;
+            changedOn = currentTimeMS;
+        }
+        
+        long long ChangedOn() {
+            return changedOn;
         }
         
         void TurnOff() {
@@ -72,6 +83,10 @@ namespace DiaDevice {
         
         long ActiveTimeMS() {
             return activeMS;
+        }
+        
+        int Active() {
+            return active;
         }
         
         ~OutPin() {

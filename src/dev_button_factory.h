@@ -7,7 +7,7 @@
 namespace DiaDevice {
     class ButtonsFactory {
         public:
-        static void FillDefaultButtons(ButtonArray *btnArray, int normallyOn) {
+        static void FillDefault(ButtonArray *btnArray, int normallyOn) {
             if (!btnArray) {
                 fprintf(stderr, "btnArray is null at fill default buttons\n");
                 exit(1);
