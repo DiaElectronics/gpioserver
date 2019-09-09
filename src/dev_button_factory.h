@@ -12,7 +12,6 @@ namespace DiaDevice {
                 fprintf(stderr, "btnArray is null at fill default buttons\n");
                 exit(1);
             }
-            GPIOWrapper * wiringPi = new GPIOWrapperWiringPi();
             btnArray->AddButton(1, 13, gpio, normallyOn);
             btnArray->AddButton(2, 14, gpio, normallyOn);
             btnArray->AddButton(3, 21, gpio, normallyOn);

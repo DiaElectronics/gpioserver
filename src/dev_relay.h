@@ -44,7 +44,6 @@ namespace DiaDevice {
         }
         
         void Tick (long long timeInMS) {
-            outPin->Tick(timeInMS);
             if (!onTime) {
                 // must be turned off
                 if(outPin->Active()) {

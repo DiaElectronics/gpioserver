@@ -37,8 +37,8 @@ namespace DiaDevice {
         
         int Read(unsigned char pin) override {
             // only 11's pin is on (dont forget its fake)
-            unsigned char turnedOnPin = 11;
-            return pin == turnedOnPin;
+            unsigned char turnedOffPin = 11;
+            return pin != turnedOffPin;
         }
         ~GPIOWrapperEmpty() {
         }

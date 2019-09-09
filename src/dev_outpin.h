@@ -10,7 +10,6 @@ namespace DiaDevice {
         long long changedOn;
         char active;
         long long activeMS;
-        long long currentTimeMS;
         
         int totalSwitches;
         int direction;
@@ -30,12 +29,6 @@ namespace DiaDevice {
             totalSwitches = 0;
         }
         
-        // Tick is a function to set currentTime (bad name :P )
-        // you MUST notify this object about current time using Tick function 
-        void Tick(long long currentTimeMS) {
-            this->currentTimeMS = currentTimeMS;
-        }
-        
         void Init(unsigned char physicalPinNumber, GPIOWrapper *gpioWrapper) {
             if (!gpioWrapper) {
                 gpioWrapper = new GPIOWrapperEmpty();
@@ -50,10 +43,11 @@ namespace DiaDevice {
             gpio->SetDirection(physicalPin, PIN_FOR_OUTPUT);
             gpio->Turn(physicalPin, 0);
             active = 0;
-            changedOn = timer.CurrentTimeMS();  
+            changedOn = timer.CurrentTimeMS();
         }
         
         void Reverse() {
+            long long currentTimeMS = timer.CurrentTimeMS();
             totalSwitches++;
             if(active) {
                 activeMS += currentTimeMS - changedOn;
