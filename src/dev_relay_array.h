@@ -51,7 +51,7 @@ namespace DiaDevice {
         }
         
         void AddRelay(int relayNumber, unsigned char pin, GPIOWrapper *gpio) {
-            if (Relays[relayNumber]!=0) {
+            if (Relays[relayNumber]) {
                 fprintf(stderr, "ERROR: button %d was already assigned\n", relayNumber);
             }
             Relays[relayNumber] = new Relay();
@@ -74,6 +74,7 @@ namespace DiaDevice {
             }
             if(Relays[rel]) {
                 Relays[rel]->SetActivePercent(percent);
+                return;
             } 
             fprintf(stderr, "ERROR, NULL relay accessed %d\n", rel);
         }

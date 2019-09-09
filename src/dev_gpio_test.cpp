@@ -4,14 +4,16 @@
 #include "dev_button_factory.h"
 #include "dev_relay_array.h"
 #include "dev_relay_factory.h"
+#include "dev_gpiolib.h"
 
 #include <unistd.h>
 
-int main(int argc, char ** argv) {
+int main(int argc, char ** argv) {    
+    DiaDevice::GPIOWrapper * gpio = new DiaDevice::GPIOWrapperWiringPi();
     DiaDevice::ButtonArray btnArray;
-    DiaDevice::ButtonsFactory::FillDefault(&btnArray, 1);
+    DiaDevice::ButtonsFactory::FillDefault(&btnArray, gpio, 1);
     DiaDevice::RelayArray relArray;
-    DiaDevice::RelayFactory::FillDefault(&relArray);
+    DiaDevice::RelayFactory::FillDefault(&relArray, gpio);
     
     btnArray.Start();
     relArray.Start();

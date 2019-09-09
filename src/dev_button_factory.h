@@ -7,19 +7,19 @@
 namespace DiaDevice {
     class ButtonsFactory {
         public:
-        static void FillDefault(ButtonArray *btnArray, int normallyOn) {
+        static void FillDefault(ButtonArray *btnArray, GPIOWrapper * gpio , int normallyOn) {
             if (!btnArray) {
                 fprintf(stderr, "btnArray is null at fill default buttons\n");
                 exit(1);
             }
             GPIOWrapper * wiringPi = new GPIOWrapperWiringPi();
-            btnArray->AddButton(1, 13, wiringPi, normallyOn);
-            btnArray->AddButton(2, 14, wiringPi, normallyOn);
-            btnArray->AddButton(3, 21, wiringPi, normallyOn);
-            btnArray->AddButton(4, 22, wiringPi, normallyOn);
-            btnArray->AddButton(5, 23, wiringPi, normallyOn);
-            btnArray->AddButton(6, 24, wiringPi, normallyOn);
-            btnArray->AddButton(7, 25, wiringPi, normallyOn);
+            btnArray->AddButton(1, 13, gpio, normallyOn);
+            btnArray->AddButton(2, 14, gpio, normallyOn);
+            btnArray->AddButton(3, 21, gpio, normallyOn);
+            btnArray->AddButton(4, 22, gpio, normallyOn);
+            btnArray->AddButton(5, 23, gpio, normallyOn);
+            btnArray->AddButton(6, 24, gpio, normallyOn);
+            btnArray->AddButton(7, 25, gpio, normallyOn);
         }
     };
 }

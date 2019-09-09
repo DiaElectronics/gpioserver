@@ -18,16 +18,16 @@ int main(int argc, char ** argv) {
     pin.Reverse();
     long long actTime = pin.ActiveTimeMS();
     if (actTime<1 || actTime >2) {
-        fprintf(stderr, "ERR: active time is not correct\n");
+        fprintf(stderr, "ERROR: active time is not correct:%lld\n", actTime);
     }
     if (pin.TotalSwitches()!=2) {
-        fprintf(stderr, "ERR: total switches count is not correct\n");
+        fprintf(stderr, "ERROR: total switches count is not correct\n");
     }
     
     DiaDevice::InPin inPinOn;
     inPinOn.Init(11, 0);
     if (!inPinOn.Read()) {
-        fprintf(stderr, "ERR: read must be 1 for test gpio 11th pin\n");
+        fprintf(stderr, "ERROR: read must be 1 for test gpio 11th pin\n");
     }
     
     DiaDevice::InPin inPinOff;
