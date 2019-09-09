@@ -40,6 +40,7 @@ namespace DiaDevice {
             }
             onTime = (percent * TOTAL_PERIOD_MS)/100;
             offTime = TOTAL_PERIOD_MS - onTime;
+            fprintf(stdout, "ontime:%lld;offtime:%lld\n", onTime, offTime);
         }
         
         void Tick (long long timeInMS) {
